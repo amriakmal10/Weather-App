@@ -1,0 +1,276 @@
+
+:root {
+  --crimson-deep:    #5a0a0a;
+  --crimson-mid:     #7a1010;
+  --crimson-light:   #9b1c1c;
+  --crimson-bright:  #b91c1c;
+  --gold-rich:       #d4a017;
+  --gold-light:      #f0c040;
+  --gold-pale:       #fde68a;
+  --gold-glow:       rgba(212, 160, 23, 0.25);
+  --panel-bg:        #1a0303;
+  --panel-border:    rgba(212, 160, 23, 0.35);
+  --text-gold:       #f0c040;
+  --text-pale:       #fde68a;
+  --text-muted:      rgba(240, 192, 64, 0.55);
+  --shadow-heavy:    0 8px 40px rgba(0,0,0,0.7);
+  --shadow-gold:     0 0 30px rgba(212, 160, 23, 0.15);
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--crimson-deep);
+  background-image:
+    radial-gradient(ellipse at 20% 20%, rgba(185, 28, 28, 0.4) 0%, transparent 60%),
+    radial-gradient(ellipse at 80% 80%, rgba(90, 10, 10, 0.6) 0%, transparent 60%),
+    repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 40px,
+      rgba(212, 160, 23, 0.03) 40px,
+      rgba(212, 160, 23, 0.03) 41px
+    ),
+    repeating-linear-gradient(
+      90deg,
+      transparent,
+      transparent 40px,
+      rgba(212, 160, 23, 0.03) 40px,
+      rgba(212, 160, 23, 0.03) 41px
+    );
+  font-family: 'Crimson Text', Georgia, serif;
+}
+
+.app-wrapper {
+  width: 100%;
+  max-width: 640px;
+  margin: 2rem auto;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: var(--shadow-heavy), var(--shadow-gold);
+  border: 1px solid var(--panel-border);
+}
+
+.weather-panel {
+  background: var(--panel-bg);
+  background-image:
+    radial-gradient(ellipse at top left, rgba(122, 16, 16, 0.3) 0%, transparent 55%),
+    radial-gradient(ellipse at bottom right, rgba(212, 160, 23, 0.06) 0%, transparent 55%);
+  padding: 2.5rem 2.5rem 2rem;
+}
+
+.panel-inner {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.top-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.temp-block {
+  flex: 1;
+}
+
+.main-temp {
+  font-family: 'Cinzel', serif;
+  font-size: clamp(2.2rem, 6vw, 3.4rem);
+  font-weight: 700;
+  color: var(--gold-light);
+  letter-spacing: 0.02em;
+  text-shadow: 0 0 20px rgba(240, 192, 64, 0.4);
+  line-height: 1;
+}
+
+.condition-block {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.4rem;
+  flex-shrink: 0;
+}
+
+.weather-icon {
+  width: 64px;
+  height: 64px;
+  object-fit: contain;
+  filter: drop-shadow(0 0 8px rgba(212, 160, 23, 0.5));
+  transition: opacity 0.3s ease;
+}
+
+.weather-icon.hidden {
+  display: none;
+}
+
+.weather-main {
+  font-family: 'Cinzel', serif;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--gold-light);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.divider {
+  height: 1px;
+  background: linear-gradient(
+    to right,
+    transparent,
+    rgba(212, 160, 23, 0.5) 30%,
+    rgba(212, 160, 23, 0.5) 70%,
+    transparent
+  );
+}
+
+.location-row {
+  text-align: center;
+}
+
+.location-name {
+  font-family: 'Cinzel', serif;
+  font-size: clamp(1.4rem, 4vw, 2rem);
+  font-weight: 700;
+  color: var(--gold-light);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  text-shadow: 0 0 15px rgba(240, 192, 64, 0.3);
+}
+
+.details-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.2rem 1.5rem;
+  padding-top: 0.5rem;
+}
+
+.detail-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.detail-label {
+  font-family: 'Cinzel', serif;
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.detail-value {
+  font-family: 'Crimson Text', serif;
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--text-pale);
+}
+
+.control-bar {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  background: var(--crimson-mid);
+  background-image:
+    linear-gradient(135deg, var(--crimson-bright) 0%, var(--crimson-mid) 50%, var(--crimson-light) 100%);
+  padding: 1.5rem 2.5rem;
+  border-top: 1px solid var(--panel-border);
+  flex-wrap: wrap;
+}
+
+.bar-label {
+  font-family: 'Cinzel', serif;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--gold-light);
+  flex-shrink: 0;
+  white-space: nowrap;
+}
+
+.city-select {
+  flex: 1;
+  min-width: 160px;
+  padding: 0.65rem 1rem;
+  background: rgba(26, 3, 3, 0.85);
+  color: var(--gold-light);
+  border: 1px solid rgba(212, 160, 23, 0.5);
+  border-radius: 6px;
+  font-family: 'Crimson Text', serif;
+  font-size: 1.05rem;
+  cursor: pointer;
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23d4a017' stroke-width='1.8' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  padding-right: 36px;
+}
+
+.city-select:focus {
+  border-color: var(--gold-rich);
+  box-shadow: 0 0 0 3px rgba(212, 160, 23, 0.2);
+}
+
+.city-select option {
+  background: #1a0303;
+  color: var(--gold-light);
+}
+
+.get-btn {
+  padding: 0.65rem 1.6rem;
+  background: rgba(26, 3, 3, 0.85);
+  color: var(--gold-light);
+  border: 1px solid rgba(212, 160, 23, 0.6);
+  border-radius: 6px;
+  font-family: 'Cinzel', serif;
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  flex-shrink: 0;
+  white-space: nowrap;
+}
+
+.get-btn:hover {
+  background: rgba(212, 160, 23, 0.12);
+  border-color: var(--gold-light);
+  box-shadow: 0 0 12px rgba(212, 160, 23, 0.25);
+  color: var(--gold-pale);
+}
+
+.get-btn:active {
+  transform: scale(0.97);
+}
+
+.loading .main-temp,
+.loading .weather-main,
+.loading .location-name,
+.loading .detail-value {
+  opacity: 0.4;
+  animation: pulse 1.2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 0.4; }
+  50%       { opacity: 0.7; }
+}
+@media (max-width: 480px) {
+  .weather-panel { padding: 1.8rem 1.5rem 1.5rem; }
+  .control-bar   { padding: 1.2rem 1.5rem; gap: 0.75rem; }
+  .details-grid  { gap: 1rem; }
+}

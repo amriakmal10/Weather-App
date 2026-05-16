@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Weather App</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Crimson+Text:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="Styles.css" />
+</head>
+<body>
+
+  <div class="app-wrapper">
+
+    <div class="weather-panel" id="weather-panel">
+      <div class="panel-inner">
+
+        <div class="top-row">
+          <div class="temp-block">
+            <span id="main-temperature" class="main-temp">--°C</span>
+          </div>
+          <div class="condition-block">
+            <img id="weather-icon" src="" alt="Weather icon" class="weather-icon hidden" />
+            <span id="weather-main" class="weather-main">--</span>
+          </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="location-row">
+          <span id="location" class="location-name">Select a city</span>
+        </div>
+
+        <div class="details-grid">
+          <div class="detail-item">
+            <span class="detail-label">Humidity</span>
+            <span id="humidity" class="detail-value">--</span>
+          </div>
+          <div class="detail-item">
+            <span class="detail-label">Feels Like</span>
+            <span id="feels-like" class="detail-value">--</span>
+          </div>
+          <div class="detail-item">
+            <span class="detail-label">Wind</span>
+            <span id="wind" class="detail-value">--</span>
+          </div>
+          <div class="detail-item">
+            <span class="detail-label">Gusts</span>
+            <span id="wind-gust" class="detail-value">--</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="control-bar">
+      <label class="bar-label" for="city-select">Weather For:</label>
+      <select id="city-select" class="city-select">
+        <option value=""></option>
+        <option value="new york">New York</option>
+        <option value="los angeles">Los Angeles</option>
+        <option value="chicago">Chicago</option>
+        <option value="paris">Paris</option>
+        <option value="tokyo">Tokyo</option>
+        <option value="london">London</option>
+      </select>
+      <button id="get-weather-btn" class="get-btn">Get Weather</button>
+    </div>
+
+  </div>
+
+  <script src="Script.js"></script>
+</body>
+</html>
